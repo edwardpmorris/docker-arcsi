@@ -22,11 +22,15 @@ To run a container and get help on ARCSI commandline options do:
 
 `docker run -t epmorris/docker-arcsi arcsi.py -h`
 
-Probably you will want to mount a local volume with images, such as freely available USGS Landsat 8 images (available via http://earthexplorer.usgs.gov/) and apply atmospheric correction, for example 'top-of-atmospher' correction.
+Probably you will want to mount a local volume with images, such as freely available USGS Landsat 8 images (available via http://earthexplorer.usgs.gov/) and apply atmospheric correction, for example 'top-of-atmosphere' correction.
 
-`docker run -i \ 
+```
+docker run -i \
+
 -v <path_to_local_landsat_folder>:<path_to_local_landsat_folder> \
--t epmorris/docker-arcsi arcsi.py -s ls8 -f GTiff -p TOA -i <path_to_local_landsat_folder><landsat_metadata_file>`
+
+-t epmorris/docker-arcsi arcsi.py -s ls8 -f GTiff -p TOA -i <path_to_local_landsat_folder><landsat_metadata_file>
+```
 
 Replace <path_to_local_landsat_folder> with an absolute path on your filesystem and <landsat_metadata_file> with the landsat metadata file (i.e., LC82020352014224LGN00_MTL.txt). The folder should contain the uncompressed landsat GeoTiff image files and metadata file.
 
