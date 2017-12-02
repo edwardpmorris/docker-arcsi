@@ -1,4 +1,4 @@
-# docker-arcsi, forked from EOFarm/docker-arcsi in turn forked from edwardpmorris/docker-arcsi
+# docker-arcsi
 A Docker image packaging Dr Pete Buntings Python Atmospheric and Radiometric Correction of Satellite Imagery (ARCSI) software (https://bitbucket.org/petebunting/arcsi).
 
 This image is based on the official continuumio miniconda3 release with Python 3.5, minimal optimisation and installation of arcsi + dependencies using the conda package manager. Paths and Debian libraries required for proper functioning of ARCSI are updated.
