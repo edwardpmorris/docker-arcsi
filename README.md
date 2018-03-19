@@ -46,7 +46,7 @@ Including a command after the container tells Docker to run that command via Bas
 
 ```
 # define name of Sentinel-2 scene - note: omit: .SAFE
-S2IMG=S2A_MSIL1C_20170613T101031_N0205_R022_T32TPR_20170613T101608
+S2IMG=S2A_MSIL1C_20170327T105021_N0204_R051_T31UFT_20170327T105021
 DEM=srtm_30m_myregion.tif
 OUTDIR=arcsi_output_AOT_inv
 TMPDIR=~/tmp/arcsi
@@ -72,7 +72,37 @@ arcsi.py -s sen2 --stats --format KEA \
   -p CLOUDS DOSAOTSGL STDSREF SATURATE TOPOSHADOW FOOTPRINT METADATA SHARP \
   -o ${OUTDIR} --dem ${DEM} --tmpath ${TMPDIR} \
   --k clouds.kea meta.json sat.kea toposhad.kea valid.kea stdsref.kea \
-  -i S2A_MSIL1C_20170617T113321_N0205_R080_T30UVD_20170617T113319.SAFE/MTD_MSIL1C.xml
+  -i ${S2IMG}.SAFE/MTD_MSIL1C.xml
+```
+
+Further S2 examples:
+
+```
+# SENTINEL CLOUDS MASKING (ONLY)
+arcsi.py --sensor sen2 -i ${S2IMG}.SAFE/MTD_MSIL1C.xml -o ${S2IMG}.SAFE/Clouds \
+   --tmpath ${TMPDIR} -f KEA --stats -p CLOUDS
+
+# SENTINEL CLOUDS MASKING AND ATMCOR with 6S, with lookup of atmosphere profile
+arcsi.py --sensor sen2 -i ${S2IMG}.SAFE/MTD_MSIL1C.xml -o ${S2IMG}.SAFE/OutputsAOTInvCL \
+   --tmpath ${TMPDIR} -f KEA --stats -p CLOUDS RAD DOSAOTSGL SREF \
+   --aeroimg Documents/arcsi-1.4.2/data/WorldAerosolParams.kea \
+   --atmosimg Documents/arcsi-1.4.2/data/WorldAtmosphereParams.kea \
+   --dem ${S2IMG}.SAFE/dem_VR_all --minaot 0.05 --maxaot 0.6 --simpledos
+
+# SENTINEL CLOUDS MASKING AND ATMCOR with 6S but with fixed AOT (already known)
+arcsi.py --sensor sen2 -i ${S2IMG}.SAFE/MTD_MSIL1C.xml -o ${S2IMG}.SAFE/OutputsAOTInvCL \
+   --tmpath ${TMPDIR} -f KEA --stats -p CLOUDS SREF \
+   --aeroimg Documents/arcsi-1.4.2/data/WorldAerosolParams.kea \
+   --atmosimg Documents/arcsi-1.4.2/data/WorldAtmosphereParams.kea \
+   --dem ${S2IMG}.SAFE/dem_VR_all --aot 0.3
+
+
+# SENTINEL, OLD NAME style from 2016; simple DOS example
+arcsi.py --sensor sen2 -i ${S2IMG}.SAFE/S2A_OPER_MTD_SAFL1C_PDMC_20170119T125545_R097_V20161120T160552_20161120T160552.xml \
+   -o ${S2IMG}.SAFE/OutputsAOTInv --tmpath ${TMPDIR} -f KEA --stats -p RAD DOSAOTSGL SREF \
+   --aeroimg Documents/arcsi-1.4.2/data/WorldAerosolParams.kea \
+   --atmosimg Documents/arcsi-1.4.2/data/WorldAtmosphereParams.kea \
+   --dem ${S2IMG}.SAFE/srtm_21_05_utm17 --minaot 0.05 --maxaot 0.6 --simpledos
 ```
 
 ### See also
