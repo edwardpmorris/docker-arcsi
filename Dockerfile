@@ -5,13 +5,13 @@ MAINTAINER Angelos Tzotsos <gcpp.kalxas@gmail.com>
 RUN conda config --add channels conda-forge && \
 conda config --add channels au-eoed && \
 conda update --yes conda && \
-conda install --yes python=3.5 arcsi && \
+conda install --yes arcsi && \
 conda clean --yes -t
 
-# Ugly fixes for dependency versions
-RUN cd /opt/conda/lib && \
-ln -s libgeos-3.5.1.so libgeos-3.5.0.so && \
-ln -s libjpeg.so.9 libjpeg.so.8
+## Ugly fixes for dependency versions
+#RUN cd /opt/conda/lib && \
+#ln -s libgeos-3.5.1.so libgeos-3.5.0.so && \
+#ln -s libjpeg.so.9 libjpeg.so.8
 
 # set gdal paths
 ENV GDAL_DRIVER_PATH /opt/conda/lib/gdalplugins:$GDAL_DRIVER_PATH
