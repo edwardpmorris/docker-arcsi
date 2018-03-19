@@ -1,7 +1,8 @@
 FROM continuumio/miniconda3:latest
 MAINTAINER Angelos Tzotsos <gcpp.kalxas@gmail.com>
 
-# update conda and install arcsi using conda package manager and clean up (rm tar packages to save space) 
+# update conda and install arcsi using conda package manager and clean up (rm tar packages to save space)
+RUN conda update -n base conda
 RUN conda config --add channels conda-forge && \
 conda config --add channels au-eoed && \
 conda update --yes conda && \
@@ -19,4 +20,3 @@ ENV GDAL_DATA /opt/conda/share/gdal
 
 # add debian packages required by arcsi
 RUN apt-get update && apt-get install -y libgfortran3 libglib2.0-0 libsm6 libxrender1 libfontconfig1 libxext6 libopenblas-base libgl1-mesa-glx
-
