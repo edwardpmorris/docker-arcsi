@@ -46,7 +46,7 @@ Including a command after the container tells Docker to run that command via Bas
 
 ```
 # define name of Sentinel-2 scene - note: omit: .SAFE
-S2IMG=${S2IMG}
+S2IMG=S2A_MSIL1C_20170327T105021_N0204_R051_T31UFT_20170327T105021
 DEM=srtm_30m_myregion.tif
 OUTDIR=arcsi_output_AOT_inv
 TMPDIR=~/tmp/arcsi
