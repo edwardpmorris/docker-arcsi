@@ -87,7 +87,7 @@ arcsi.py --sensor sen2 -i ${S2IMG}.SAFE/MTD_MSIL1C.xml -o ${S2IMG}.SAFE/OutputsA
    --tmpath ${TMPDIR} -f KEA --stats -p CLOUDS RAD DOSAOTSGL SREF \
    --aeroimg Documents/arcsi-1.4.2/data/WorldAerosolParams.kea \
    --atmosimg Documents/arcsi-1.4.2/data/WorldAtmosphereParams.kea \
-   --dem ${S2IMG}.SAFE/dem_VR_all --minaot 0.05 --maxaot 0.6 --simpledos
+   --dem ${S2IMG}.SAFE/dem_VR_all --minaot 0.05 --maxaot 0.6
 
 # SENTINEL CLOUDS MASKING AND ATMCOR with 6S but with fixed AOT (already known)
 arcsi.py --sensor sen2 -i ${S2IMG}.SAFE/MTD_MSIL1C.xml -o ${S2IMG}.SAFE/OutputsAOTInvCL \
@@ -102,7 +102,7 @@ arcsi.py --sensor sen2 -i ${S2IMG}.SAFE/S2A_OPER_MTD_SAFL1C_PDMC_20170119T125545
    -o ${S2IMG}.SAFE/OutputsAOTInv --tmpath ${TMPDIR} -f KEA --stats -p RAD DOSAOTSGL SREF \
    --aeroimg Documents/arcsi-1.4.2/data/WorldAerosolParams.kea \
    --atmosimg Documents/arcsi-1.4.2/data/WorldAtmosphereParams.kea \
-   --dem ${S2IMG}.SAFE/srtm_21_05_utm17 --minaot 0.05 --maxaot 0.6 --simpledos
+   --dem ${S2IMG}.SAFE/srtm_21_05_utm17 --simpledos
 ```
 
 ### See also
