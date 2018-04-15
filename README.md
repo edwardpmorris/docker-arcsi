@@ -60,8 +60,8 @@ mkdir ${TMPDIR}
 # simple DOS1 correction example
 arcsi.py --sensor sen2 -i MTD_MSIL1C.xml -o ${OUTDIR} \
 	 --tmpath ${TMPDIR} -f KEA --stats -p RAD DOSAOTSGL SREF \
-	 --aeroimg ${CONDA_PREFIX}/share/arcsi/WorldAerosolParams.kea \
-	 --atmosimg ${CONDA_PREFIX}/share/arcsi/WorldAtmosphereParams.kea \
+	 --aeroimg /opt/conda/share/arcsi/WorldAerosolParams.kea \
+	 --atmosimg /opt/conda/share/arcsi/WorldAtmosphereParams.kea \
 	 --dem ${DEM} --minaot 0.05 --maxaot 0.6 --simpledos
 ```
 
@@ -85,23 +85,23 @@ arcsi.py --sensor sen2 -i ${S2IMG}.SAFE/MTD_MSIL1C.xml -o ${S2IMG}.SAFE/Clouds \
 # SENTINEL CLOUDS MASKING AND ATMCOR with 6S, with lookup of atmosphere profile
 arcsi.py --sensor sen2 -i ${S2IMG}.SAFE/MTD_MSIL1C.xml -o ${S2IMG}.SAFE/OutputsAOTInvCL \
    --tmpath ${TMPDIR} -f KEA --stats -p CLOUDS RAD DOSAOTSGL SREF \
-   --aeroimg Documents/arcsi-1.4.2/data/WorldAerosolParams.kea \
-   --atmosimg Documents/arcsi-1.4.2/data/WorldAtmosphereParams.kea \
+   --aeroimg /opt/conda/share/arcsi/WorldAerosolParams.kea \
+   --atmosimg /opt/conda/share/arcsi/WorldAtmosphereParams.kea \
    --dem ${S2IMG}.SAFE/dem_VR_all --minaot 0.05 --maxaot 0.6
 
 # SENTINEL CLOUDS MASKING AND ATMCOR with 6S but with fixed AOT (already known)
 arcsi.py --sensor sen2 -i ${S2IMG}.SAFE/MTD_MSIL1C.xml -o ${S2IMG}.SAFE/OutputsAOTInvCL \
    --tmpath ${TMPDIR} -f KEA --stats -p CLOUDS SREF \
-   --aeroimg Documents/arcsi-1.4.2/data/WorldAerosolParams.kea \
-   --atmosimg Documents/arcsi-1.4.2/data/WorldAtmosphereParams.kea \
+   --aeroimg /opt/conda/share/arcsi/WorldAerosolParams.kea \
+   --atmosimg /opt/conda/share/arcsi/WorldAtmosphereParams.kea \
    --dem ${S2IMG}.SAFE/dem_VR_all --aot 0.3
 
 
 # SENTINEL, OLD NAME style from 2016; simple DOS example
 arcsi.py --sensor sen2 -i ${S2IMG}.SAFE/S2A_OPER_MTD_SAFL1C_PDMC_20170119T125545_R097_V20161120T160552_20161120T160552.xml \
    -o ${S2IMG}.SAFE/OutputsAOTInv --tmpath ${TMPDIR} -f KEA --stats -p RAD DOSAOTSGL SREF \
-   --aeroimg Documents/arcsi-1.4.2/data/WorldAerosolParams.kea \
-   --atmosimg Documents/arcsi-1.4.2/data/WorldAtmosphereParams.kea \
+   --aeroimg /opt/conda/share/arcsi/WorldAerosolParams.kea \
+   --atmosimg /opt/conda/share/arcsi/WorldAtmosphereParams.kea \
    --dem ${S2IMG}.SAFE/srtm_21_05_utm17 --simpledos
 ```
 
