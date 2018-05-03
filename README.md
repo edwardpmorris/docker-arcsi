@@ -23,6 +23,8 @@ To run a container and get help on ARCSI commandline options do:
 
 `docker run -t mundialis/arcsi arcsi.py -h`
 
+See below under "Docker example" for a more detailed Sentinel-2 example.
+
 #### Example: Landsat
 To mount a local volume with images, such as freely available USGS Landsat 8 images (available via http://earthexplorer.usgs.gov/), apply radiometric calibration and apply atmospheric correction, for example 'top-of-atmosphere' correction, do:
 
@@ -42,7 +44,7 @@ Flag `-v` tells Docker to mount the specified local volume (in the example this 
 
 Including a command after the container tells Docker to run that command via Bash, here `arcsi.py`, which requires various options/flags to be defined (see `arcsi.py -h`). In the example `-s` defines the sensor, `-f` the output file format, `-p` the type of processing, `-i` the path to a metadata file, `-o` product output path (in this case the original folder). To try out the command remember to change `<landsat_metadata_file>` to the relative path of the landsat metadata file (i.e., `LC82020352014224LGN00_MTL.txt`). 
 
-#### Example: Sentinel
+#### Example: Sentinel-2
 
 ```
 # define name of Sentinel-2 scene - note: omit: .SAFE
@@ -96,13 +98,23 @@ arcsi.py --sensor sen2 -i ${S2IMG}.SAFE/MTD_MSIL1C.xml -o ${S2IMG}.SAFE/OutputsA
    --atmosimg /opt/conda/share/arcsi/WorldAtmosphereParams.kea \
    --dem ${S2IMG}.SAFE/dem_VR_all --aot 0.3
 
-
 # SENTINEL, OLD NAME style from 2016; simple DOS example
 arcsi.py --sensor sen2 -i ${S2IMG}.SAFE/S2A_OPER_MTD_SAFL1C_PDMC_20170119T125545_R097_V20161120T160552_20161120T160552.xml \
    -o ${S2IMG}.SAFE/OutputsAOTInv --tmpath ${TMPDIR} -f KEA --stats -p RAD DOSAOTSGL SREF \
    --aeroimg /opt/conda/share/arcsi/WorldAerosolParams.kea \
    --atmosimg /opt/conda/share/arcsi/WorldAtmosphereParams.kea \
    --dem ${S2IMG}.SAFE/srtm_21_05_utm17 --simpledos
+```
+
+### Docker example
+
+```
+docker run -i -t -v /path/to/S2_data/:/data -v /path/to/DEM_data/:/dem arcsi/arcsi \
+       arcsi.py --sensor sen2 -i /data/${S2IMG}/MTD_MSIL1C.xml -o /data/${S2IMG}/output \
+       --tmpath /tmp -f KEA --stats -p CLOUDS RAD DOSAOTSGL SREF \
+       --aeroimg /opt/conda/share/arcsi/WorldAerosolParams.kea \
+       --atmosimg /opt/conda/share/arcsi/WorldAtmosphereParams.kea \
+       --dem /dem/eu_dem_25m.tif --minaot 0.05 --maxaot 0.6
 ```
 
 ### See also
