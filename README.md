@@ -112,8 +112,11 @@ arcsi.py --sensor sen2 -i ${S2IMG}.SAFE/S2A_OPER_MTD_SAFL1C_PDMC_20170119T125545
 # define name of Sentinel-2 scene - note: omit: .SAFE
 S2IMG=S2A_MSIL1C_20170327T105021_N0204_R051_T31UFT_20170327T105021
 DEM=srtm_30m_myregion.tif
+MY_S2_PATH=/path/to/S2_data/
+MY_DEM_PATH=/path/to/DEM_data/
 
-docker run -i -t -v /path/to/S2_data/:/data -v /path/to/DEM_data/:/dem arcsi/arcsi \
+# run ARCSI (we use volume mapping to make S2 and DEM visible inside the docker container)
+docker run -i -t -v ${MY_S2_PATH}:/data -v ${MY_DEM_PATH}:/dem arcsi/arcsi \
        arcsi.py --sensor sen2 -i /data/${S2IMG}.SAFE/MTD_MSIL1C.xml -o /data/${S2IMG}.SAFE/output \
        --tmpath /tmp -f KEA --stats -p CLOUDS RAD DOSAOTSGL SREF \
        --aeroimg /opt/conda/share/arcsi/WorldAerosolParams.kea \
