@@ -8,7 +8,7 @@ This image is based on the official continuumio miniconda3 release with Python 3
 ### Setup
 To set up a ARCSI Docker container on your system, first ensure you have Docker installed; follow the instructions at https://docs.docker.com/installation/
 
-To use the image, either pull the latest trusted build from https://registry.hub.docker.com/u/mundialis/arcsi/ by doing this:
+To use the image, either pull the latest trusted build from https://hub.docker.com/r/mundialis/arcsi/ by doing this:
 
 `docker pull mundialis/arcsi`
 
