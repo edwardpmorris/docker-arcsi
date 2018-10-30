@@ -1,5 +1,8 @@
 FROM continuumio/miniconda3:latest
-MAINTAINER Angelos Tzotsos <gcpp.kalxas@gmail.com>
+
+LABEL authors="Angelos Tzotsos,Markus Neteler"
+LABEL maintainer="gcpp.kalxas@gmail.com,neteler@mundialis.de"
+
 
 # update conda and install arcsi using conda package manager and clean up (rm tar packages to save space)
 RUN conda update -n base conda
@@ -19,4 +22,6 @@ ENV GDAL_DRIVER_PATH /opt/conda/lib/gdalplugins:$GDAL_DRIVER_PATH
 ENV GDAL_DATA /opt/conda/share/gdal
 
 # add debian packages required by arcsi
-RUN apt-get update && apt-get install -y libgfortran3 libglib2.0-0 libsm6 libxrender1 libfontconfig1 libxext6 libopenblas-base libgl1-mesa-glx
+RUN apt-get update && apt-get install -y \
+    libgfortran3 libglib2.0-0 libsm6 libxrender1 \
+    libfontconfig1 libxext6 libopenblas-base libgl1-mesa-glx
