@@ -3,12 +3,10 @@ A Docker image packaging Dr Pete Buntings Python Atmospheric and Radiometric Cor
 
 This image is based on the official continuumio miniconda3 release with Python 3.5, minimal optimisation and installation of arcsi + dependencies using the conda package manager. Paths and Debian libraries required for proper functioning of ARCSI are updated.
 
-**Warning - The resulting image is rather large**
-
 ### Setup
 To set up a ARCSI Docker container on your system, first ensure you have Docker installed; follow the instructions at https://docs.docker.com/installation/
 
-To use the image, either pull the latest trusted build from https://hub.docker.com/r/mundialis/arcsi/ by doing this:
+To use the image, either pull the latest trusted docker image build (~850 MB) from https://hub.docker.com/r/mundialis/arcsi/ by doing this:
 
 `docker pull mundialis/arcsi`
 
@@ -23,7 +21,7 @@ To run a container and get help on ARCSI commandline options do:
 
 `docker run -t mundialis/arcsi arcsi.py -h`
 
-See below under "Docker example" for a more detailed Sentinel-2 example.
+See below under "Docker example" for a more detailed Sentinel-2 example as well as the document [Introduction to ARCSI for generating Analysis Ready Data (ARD)](https://www.arcsi.remotesensing.info/tutorials/ARCSI_Intro_Tutorial_compress.pdf).
 
 #### Example: Landsat
 To mount a local volume with images, such as freely available USGS Landsat 8 images (available via http://earthexplorer.usgs.gov/), apply radiometric calibration and apply atmospheric correction, for example 'top-of-atmosphere' correction, do:
