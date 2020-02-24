@@ -9,7 +9,7 @@ RUN conda update -n base conda
 RUN conda config --add channels conda-forge && \
 conda config --add channels au-eoed && \
 conda update --yes conda && \
-conda install --yes python=3.7 arcsi && \
+conda install --yes python=3.7 arcsi cgal && \
 conda clean --yes -t
 
 ## Ugly fixes for dependency versions
@@ -20,6 +20,7 @@ conda clean --yes -t
 # set gdal paths
 ENV GDAL_DRIVER_PATH /opt/conda/lib/gdalplugins:$GDAL_DRIVER_PATH
 ENV GDAL_DATA /opt/conda/share/gdal
+ENV PROJ_LIB=/opt/conda/share/proj
 
 # add debian packages required by arcsi
 #RUN apt-get update && apt-get install -y \
